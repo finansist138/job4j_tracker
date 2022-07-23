@@ -29,10 +29,8 @@ public class Calculator {
         Calculator calculator = new Calculator();
         int resultMultiplay = calculator.multiplay(2);
         int resultMinus = minus(7);
-        Calculator calculator1 = new Calculator();
-        int resultDivide = calculator1.divide(10);
-        Calculator calculator2 = new Calculator();
-        int resultSumAllOperation = calculator2.sumAllOperation(5);
+        int resultDivide = calculator.divide(10);
+        int resultSumAllOperation = calculator.sumAllOperation(5);
         System.out.println(resultSum);
         System.out.println(resultMultiplay);
         System.out.println(resultMinus);
