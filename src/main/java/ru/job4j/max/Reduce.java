@@ -14,9 +14,9 @@ public class Reduce {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 2, 3};
+        int[] array1 = {1, 2, 3};
         Reduce reduce = new Reduce();
-        reduce.to(array);
-        reduce.print(array);
+        reduce.to(array1);
+        reduce.print(array1);
     }
 }
