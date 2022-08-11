@@ -2,58 +2,34 @@ package ru.job4j.pojo;
 
 public class Library {
 
-    private String name;
-    private int numberOfPage;
-
-    public Library(String name, int numberOfPage) {
-        this.name = name;
-        this.numberOfPage = numberOfPage;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getNumberOfPage() {
-        return numberOfPage;
-    }
-
-    public void setNumberOfPage(int numberOfPage) {
-        this.numberOfPage = numberOfPage;
-    }
-
     public static void main(String[] args) {
-        Library book1 = new Library("Shantaram", 1000);
-        Library book2 = new Library("Kolobok", 10);
-        Library book3 = new Library("Teremok", 8);
-        Library book4 = new Library("Clean code", 0);
-        Library[] libraries = new Library[4];
-        libraries[0] = book1;
-        libraries[1] = book2;
-        libraries[2] = book3;
-        libraries[3] = book4;
-        for (int i = 0; i < libraries.length; i++) {
-            Library libr = libraries[i];
-            System.out.println(libr.getName() + " - " + libr.getNumberOfPage());
+        Book book1 = new Book("Shantaram", 1000);
+        Book book2 = new Book("Kolobok", 10);
+        Book book3 = new Book("Teremok", 8);
+        Book book4 = new Book("Clean code", 0);
+        Book[] books = new Book[4];
+        books[0] = book1;
+        books[1] = book2;
+        books[2] = book3;
+        books[3] = book4;
+        for (int i = 0; i < books.length; i++) {
+            Book book = books[i];
+            System.out.println(book.getName() + " - " + book.getNumberOfPage());
         }
 
         System.out.println("Swap 0 and 3");
-        libraries[0] = book4;
-        libraries[3] = book1;
-        for (int i = 0; i < libraries.length; i++) {
-            Library libr = libraries[i];
-            System.out.println(libr.getName() + " - " + libr.getNumberOfPage());
+        books[0] = book4;
+        books[3] = book1;
+        for (int i = 0; i < books.length; i++) {
+            Book book = books[i];
+            System.out.println(book.getName() + " - " + book.getNumberOfPage());
         }
 
         System.out.println("Print only Clean code");
-        for (int i = 0; i < libraries.length; i++) {
-            Library libr = libraries[i];
-            if (libr.equals(libraries[0])) {
-                System.out.println(libr.getName() + " - " + libr.getNumberOfPage());
+        for (int i = 0; i < books.length; i++) {
+            Book book = books[i];
+            if ("Clean code".equals(book.getName())) {
+                System.out.println(book.getName() + " - " + book.getNumberOfPage());
             }
         }
     }
