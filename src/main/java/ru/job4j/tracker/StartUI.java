@@ -48,6 +48,7 @@ public class StartUI {
                 } else {
                     System.out.println("Ошибка удаления заявки.");
                 }
+
             } else if (select == 6) {
                 run = false;
             }
