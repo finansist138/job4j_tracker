@@ -9,7 +9,6 @@ public class Task {
         this.description = description;
     }
 
-
     public String getNumber() {
         return number;
     }
