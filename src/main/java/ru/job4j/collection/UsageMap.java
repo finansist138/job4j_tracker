@@ -8,7 +8,7 @@ public class UsageMap {
         map.put("finansist138@mail.ru", "Artemov Artem Artemovich");
         for (String key : map.keySet()) {
             String value = map.get(key);
-            System.out.println(value);
+            System.out.println(key + " = " + value);
         }
     }
 }
