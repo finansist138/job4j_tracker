@@ -14,9 +14,11 @@ public class BankService {
 
     public boolean deleteUser(String passport) {
         boolean rsl = false;
-        if (users.containsKey(findByPassport(passport))) {
-            users.remove(findByPassport(passport));
-            rsl = true;
+        if (findByPassport(passport) != null) {
+            if (users.containsKey(findByPassport(passport))) {
+                users.remove(findByPassport(passport));
+                rsl = true;
+            }
         }
         return rsl;
     }
