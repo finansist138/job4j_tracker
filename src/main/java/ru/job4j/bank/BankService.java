@@ -13,7 +13,7 @@ public class BankService {
     }
 
     public boolean deleteUser(String passport) {
-        return users.remove(new User(passport, users.toString())) != null;
+        return users.remove(new User(passport, "")) != null;
     }
 
     public void addAccount(String passport, Account account) {
