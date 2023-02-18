@@ -65,29 +65,33 @@ class JobTest {
     }
 
     @Test
-    public void whenCompatorByNameAndPrority() {
+    public void whenComparatorByNameAndPriority() {
         Comparator<Job> cmpNamePriority = new JobDescByName().thenComparing(new JobDescByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1));
-        assertThat(rsl).isLessThan(0);
-    }
-
-    @Test
-    public void whenCompatorByPriorityAndName() {
-        Comparator<Job> comparator = new JobDescByPriority().thenComparing(new JobDescByName());
-        int rsl = comparator.compare(
-                new Job("Programmer", 2),
-                new Job("Cleaner", 9));
+                new Job("Impl task", 1));
         assertThat(rsl).isGreaterThan(0);
     }
 
     @Test
-    public void whenCompatorAscByPriorityAndDescByName() {
-        Comparator<Job> comparator = new JobAscByPriority().thenComparing(new JobDescByName());
-        int rsl = comparator.compare(
+    public void whenComparatorByPriorityAndName() {
+        List<Job> jobs = Arrays.asList(
                 new Job("Programmer", 2),
-                new Job("Cleaner", 9));
+                new Job("Cleaner", 2));
+        Comparator<Job> jobComparator = new JobDescByPriority().thenComparing(new JobAscByName());
+        jobs.sort(jobComparator);
+        List<Job> expected = Arrays.asList(
+                new Job("Cleaner", 2),
+                new Job("Programmer", 2));
+        assertThat(jobs).isEqualTo(expected);
+    }
+
+    @Test
+    public void whenComparatorAscByNameAndAscByPriority() {
+        Comparator<Job> comparator = new JobAscByName().thenComparing(new JobAscByPriority());
+        int rsl = comparator.compare(
+                new Job("Cleaner", 2),
+                new Job("Cleaner", 3));
         assertThat(rsl).isLessThan(0);
     }
 }
