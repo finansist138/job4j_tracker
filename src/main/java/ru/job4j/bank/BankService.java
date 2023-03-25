@@ -5,17 +5,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Класс описывает модель для банковской системы.
+ * @author ARTEM ARTEMOV
+ * @version 1.0
+ */
 public class BankService {
+    /**
+     * Поле содержит всех пользователей системы с привязанными к ним счетами, у одного пользователя
+     * может быть несколько счетов.
+     */
     private final Map<User, List<Account>> users = new HashMap<>();
 
+    /**
+     * Метод добавляет пользователя в банковскую систему, после проверки на идентичность.
+     * @param user содержит объект класса User.
+     */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<>());
     }
 
+    /**
+     * Метод позволяет удалить пользователя из системы по номеру паспорта.
+     * @param passport содержит номер паспорта пользователя, которого хотим удалить.
+     * @return возвращает true при положительном удалении пользователи или false при отрицательном.
+     */
     public boolean deleteUser(String passport) {
         return users.remove(new User(passport, "")) != null;
     }
 
+    /**
+     * Метод добавляет новый счет к пользователю после его поиска по номеру паспорта и проверки
+     * на идентичность данного счета.
+     * @param passport содержит номер паспорта пользователя, которому добавляем счет.
+     * @param account содержит объект класса Account.
+     */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
         if (user != null) {
@@ -26,6 +50,11 @@ public class BankService {
         }
     }
 
+    /**
+     * Метод производит поиск пользователя по номеру паспорта.
+     * @param passport содержит номер паспорта пользователя, которого пытаемся найти.
+     * @return возвращает результат поиска пользователя.
+     */
     public User findByPassport(String passport) {
         User rsl = null;
         for (User user : users.keySet()) {
@@ -37,6 +66,12 @@ public class BankService {
         return rsl;
     }
 
+    /**
+     * Метод ищет счет пользователя по реквизитам счета.
+     * @param passport содержит номер паспорта пользователя, чей счет ищем.
+     * @param requisite содержит реквизиты банковского счета пользователя, чей счет ищем.
+     * @return возвращает реузьтат поиска счета пользователя.
+     */
     public Account findByRequisite(String passport, String requisite) {
         Account rsl = null;
         User user = findByPassport(passport);
@@ -52,6 +87,16 @@ public class BankService {
         return rsl;
     }
 
+    /**
+     * Метод производит перечисление денег пользователя с одного счёта на другой счёт после проверки,
+     * что данные счета существуют и на первом счете достаточно средств для перевода.
+     * @param srcPassport содержит номер паспорта первого пользователя.
+     * @param srcRequisite содержит реквизиты банковского счета первого пользователя.
+     * @param destPassport содержит номер паспорта второго пользователя.
+     * @param destRequisite содержит реквизиты банковского счета второго пользователя.
+     * @param amount содержит сумму перевода.
+     * @return возвращает true при положительном переводе денежных средств или false, если перевод не удался.
+     */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
@@ -65,6 +110,11 @@ public class BankService {
         return rsl;
     }
 
+    /**
+     * Метод позволяет получить список счетов пользователя.
+     * @param user содержит пользователя, чьи счета необходимо получить.
+     * @return возвращает список счетов пользователя.
+     */
     public List<Account> getAccounts(User user) {
         return users.get(user);
     }
