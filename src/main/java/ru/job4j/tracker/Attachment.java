@@ -4,7 +4,7 @@ public class Attachment {
     private String name;
     private int size;
 
-    public Attachment(String name, int size){
+    public Attachment(String name, int size) {
         this.name = name;
         this.size = size;
     }
