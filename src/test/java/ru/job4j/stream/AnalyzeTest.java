@@ -97,6 +97,7 @@ class AnalyzeByMapTest {
                                 )
                         )
                 ).stream()
+
         );
         assertThat(average).hasSameElementsAs(List.of(
                 new Tuple("Math", 70D),
